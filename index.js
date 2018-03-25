@@ -20,25 +20,15 @@ function getDataFromApi(searchTerm, callback) {
 
   $.ajax(settings);
 }
-/*
-function renderResult(result) {
-  console.log('renderResult ran');
-  console.log(result);
-  return `
-    <div>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/${result.id.videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-  `;
-}
-*/
+ 
 function renderResult(result) {
   console.log('renderResult ran');
   console.log(result);
   return `
     <div>
       <a class="js-result-thumbnail" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">
-        <img src="${result.snippet.thumbnails.medium.url}" alt="${result.snippet.title}"/>
-        <p>${result.snippet.title}</p>
+        <img src="${result.snippet.thumbnails.medium.url}" aria-label="${result.id.videoId}"/>
+        <p id="${result.id.videoId}">${result.snippet.title}</p>
       </a> 
     </div>
   `;
@@ -47,6 +37,7 @@ function renderResult(result) {
 function displayYouTubeSearchData(data) {
   console.log('displayYouTubeSearchData ran');
   const results = data.items.map((item, index) => renderResult(item));
+  $('.js-search-results').prop('hidden', false)
   $('.js-search-results').html(results);
 }
 
