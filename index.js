@@ -1,17 +1,16 @@
-const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
+const YUMMLY_SEARCH_URL = 'https://api.yummly.com/v1/api/recipes';
 
 function getDataFromApi(searchTerm, callback) {
   console.log('getDataFromApi ran');
   const settings = {
-    url: YOUTUBE_SEARCH_URL,
+    url: YUMMLY_SEARCH_URL,
     data: {
-      'maxResults': '25',
-      'part': 'snippet',
+      '_app_key': '98d5f50b76c55e907326e264c73e2b06',
+      '_app_id': 'fb07a227',
       'q': searchTerm,
-      'type': 'video',
-      'key': 'AIzaSyBhVeDVxN5VgRfxHEIQVeks5m3t-0ob6Qw'
+      'requirePictures': true
     },
-    dataType: 'json',
+    dataType: 'jsonp',
     type: 'GET',
     success: callback
   };
@@ -26,19 +25,22 @@ function renderResult(result) {
   console.log(result);
   return `
     <div>
-      <a class="js-result-thumbnail" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">
-        <img src="${result.snippet.thumbnails.medium.url}" aria-label="${result.id.videoId}"/>
-        <p id="${result.id.videoId}">${result.snippet.title}</p>
+      <a class="js-result-thumbnail" href="https://www.yummly.com/#recipe/${result.id}" target="_blank">
+        <img src="${result.smallImageUrls[0]}" aria-label="${result.id}"/>
+        <p id="${result.id}">${result.recipeName} (Source: ${result.sourceDisplayName})</p>
       </a> 
     </div>
   `;
 }
 
-function displayYouTubeSearchData(data) {
-  console.log('displayYouTubeSearchData ran');
-  const results = data.items.map((item, index) => renderResult(item));
+function displayYummlySearchData(data) {
+  console.log('displayYummlySearchData ran');
+  console.log(data);
+  const results = data.matches.map((item, index) => renderResult(item));
+  const attribution = data.attribution.html;
   $('.js-search-results').prop('hidden', false)
-  $('.js-search-results').html(results);
+  $('.js-search-results').html(attribution)
+  $('.js-search-results').append(results);
 }
 
 function watchSubmit() {
@@ -51,7 +53,7 @@ function watchSubmit() {
     // clear out the input
     queryTarget.val("");
     console.log(`The search term is ${query}`);
-    getDataFromApi(query, displayYouTubeSearchData);
+    getDataFromApi(query, displayYummlySearchData);
   });
 }
 
