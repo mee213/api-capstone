@@ -1,9 +1,30 @@
-const YUMMLY_SEARCH_URL = 'https://api.yummly.com/v1/api/recipes';
+const YUMMLY_SEARCHRECIPES_URL = 'https://api.yummly.com/v1/api/recipes';
+const YUMMLY_GETRECIPE_URL = 'https://api.yummly.com/v1/api/recipe/recipe-id';
 
-function getDataFromApi(searchTerm, callback) {
-  console.log('getDataFromApi ran');
+function getDataFromYummlySearchRecipesApi(searchTerm, callback) {
+  console.log('getDataFromYummlySearchRecipesApi ran');
   const settings = {
-    url: YUMMLY_SEARCH_URL,
+    url: YUMMLY_SEARCHRECIPES_URL,
+    data: {
+      '_app_key': '98d5f50b76c55e907326e264c73e2b06',
+      '_app_id': 'fb07a227',
+      'q': `green smoothie ${searchTerm}`,
+      'requirePictures': true
+    },
+    dataType: 'jsonp',
+    type: 'GET',
+    success: callback
+  };
+
+  console.log(settings);
+
+  $.ajax(settings);
+}
+ 
+function getDataFromYummlyGetRecipeApi(searchTerm, callback) {
+  console.log('getDataFromYummlyGetRecipeApi ran');
+  const settings = {
+    url: YUMMLY_GETRECIPE_URL,
     data: {
       '_app_key': '98d5f50b76c55e907326e264c73e2b06',
       '_app_id': 'fb07a227',
@@ -19,7 +40,7 @@ function getDataFromApi(searchTerm, callback) {
 
   $.ajax(settings);
 }
- 
+
 function renderResult(result) {
   console.log('renderResult ran');
   console.log(result);
@@ -53,7 +74,7 @@ function watchSubmit() {
     // clear out the input
     queryTarget.val("");
     console.log(`The search term is ${query}`);
-    getDataFromApi(query, displayYummlySearchData);
+    getDataFromYummlySearchRecipesApi(query, displayYummlySearchData);
   });
 }
 
