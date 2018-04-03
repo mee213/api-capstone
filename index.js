@@ -1,5 +1,8 @@
 const YUMMLY_SEARCHRECIPES_URL = 'https://api.yummly.com/v1/api/recipes';
 const YUMMLY_GETRECIPE_BASE_URL = 'https://api.yummly.com/v1/api/recipe/';
+let results;
+let attribution;
+
 
 function getDataFromYummlySearchRecipesApi(searchTerm, callback) {
   console.log('getDataFromYummlySearchRecipesApi ran');
@@ -59,11 +62,13 @@ function renderRecipe(recipe) {
   const ingredientListHTML = renderIngredientList(recipe);
   return `
     <div>
+      <button type="submit" class="js-back">Back to Search Results</button>
       <h3>${recipe.attribution.html}</h3>
       <img src="${recipe.images[0].hostedLargeUrl}"/>
       <h4>Servings: ${recipe.numberOfServings}</h4>
       ${ingredientListHTML}
-      <p>Source: <a href="${recipe.source.sourceRecipeUrl}">${recipe.source.sourceDisplayName}</a></p>
+      <p>Source: <a href="${recipe.source.sourceRecipeUrl}" target="_blank">${recipe.source.sourceDisplayName}</a></p>
+      <button type="submit" class="js-back">Back to Search Results</button>
     </div>
   `;
 }
@@ -80,26 +85,47 @@ function renderIngredientList(recipe) {
 function displayYummlySearchData(data) {
   console.log('displayYummlySearchData ran');
   console.log(data);
-  const results = data.matches.map((item, index) => renderSearchResult(item));
-  const attribution = data.attribution.html;
-  $('.js-search-results').prop('hidden', false)
-  $('.js-search-results').html(attribution)
-  $('.js-search-results').append(results);
+  if (data.totalMatchCount>0) { 
+    results = data.matches.map((item, index) => renderSearchResult(item));
+    attribution = data.attribution.html;
+    $('.js-search-results').prop('hidden', false);
+    $('.js-search-results').html(attribution);
+    $('.js-search-results').append(results);
+    console.log("results are: ");
+    console.log(results);
 
-  // watch for user to click on a recipe & display the recipe
+    // watch for user to click on a recipe & then display the recipe
+    watchForSelection();
+
+  } else {
+    const errorMessage = "<p>There are no search results to display.</p>";
+    $('.js-search-results').prop('hidden', false);
+    $('.js-search-results').html(errorMessage);
+  }
+}
+
+function watchForSelection() {
   $("a").on( "click", function(event) {
-    event.preventDefault();
-    console.log('recipe clicked');
-    const recipeId = $(this).children('p').attr('id');
-    getDataFromYummlyGetRecipeApi(recipeId, displayYummlyRecipe);
-  });
+      event.preventDefault();
+      console.log('recipe clicked');
+      const recipeId = $(this).children('p').attr('id');
+      getDataFromYummlyGetRecipeApi(recipeId, displayYummlyRecipe);
+    });
 }
 
 function displayYummlyRecipe(data) {
   console.log('displayYummlyRecipe ran');
   console.log(data);
-  const recipeDisplay = renderRecipe(data);
-  $('.js-search-results').html(recipeDisplay);
+  const recipeHTML = renderRecipe(data);
+  $('.js-search-results').html(recipeHTML);
+  $('.js-back').click(event => {
+    event.preventDefault();
+    console.log('Back to Search Results button clicked');
+    $('.js-search-results').html(attribution);
+    $('.js-search-results').append(results);
+    // watch for user to click on a recipe & then display the recipe
+    watchForSelection();
+  })
 }
 
 function watchSubmitSearch() {
