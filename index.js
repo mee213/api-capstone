@@ -1,4 +1,4 @@
-function greenSmoothieApp() {
+function thisApp() {
 
 
   const YUMMLY_SEARCHRECIPES_URL = 'https://api.yummly.com/v1/api/recipes';
@@ -15,7 +15,8 @@ function greenSmoothieApp() {
         '_app_key': '98d5f50b76c55e907326e264c73e2b06',
         '_app_id': 'fb07a227',
         'q': `green smoothie ${searchTerm}`,
-        'requirePictures': true
+        'requirePictures': true,
+        maxResult: 144
       },
       dataType: 'jsonp',
       type: 'GET',
@@ -46,11 +47,15 @@ function greenSmoothieApp() {
 
   function renderSearchResult(result) {
     return `
-      <div>
-        <a class="js-result-thumbnail" href="https://www.yummly.com/#recipe/${result.id}" target="_blank">
-          <img src="${result.smallImageUrls[0]}" aria-label="${result.id}"/>
-          <p id="${result.id}">${result.recipeName} (Source: ${result.sourceDisplayName})</p>
-        </a> 
+      <div class="col-3">
+        <div class="box">
+          <a class="js-result-thumbnail" href="" >
+            <img class="image" src="${result.smallImageUrls[0]}" aria-label="${result.id}"/>
+            <div class="text">
+              <h4 id="${result.id}">${result.recipeName} (Source: ${result.sourceDisplayName})</h4>
+            </div>
+          </a> 
+        </div>
       </div>
     `;
   }
@@ -59,11 +64,11 @@ function greenSmoothieApp() {
   function renderRecipe(recipe) {
     const ingredientListHTML = renderIngredientList(recipe);
     return `
-      <div>
+      <div class="col-12">
         <button type="submit" class="js-back">Back to Search Results</button>
         <h3>${recipe.attribution.html}</h3>
         <img src="${recipe.images[0].hostedLargeUrl}"/>
-        <h4>Servings: ${recipe.numberOfServings}</h4>
+        <h5>Servings: ${recipe.numberOfServings}</h5>
         ${ingredientListHTML}
         <p>Source: <a href="${recipe.source.sourceRecipeUrl}" target="_blank">${recipe.source.sourceDisplayName}</a></p>
         <button type="submit" class="js-back">Back to Search Results</button>
@@ -89,9 +94,10 @@ function greenSmoothieApp() {
     if (data.totalMatchCount>0) { 
       
       results = data.matches.map((item, index) => renderSearchResult(item));
-      attribution = data.attribution.html;
+      attribution = `<div class="col-12"><p>${data.attribution.html}</p></div>`;
       unhideResultsDiv();
       populateResultsToDOM(attribution, results);
+      console.log(attribution);
       watchForSelection();
 
     } else {
@@ -104,8 +110,8 @@ function greenSmoothieApp() {
 
 
   function populateResultsToDOM(attribution_1, results_1) {
-    $('.js-results').html(attribution_1);
-    $('.js-results').append(results_1);
+    $('.js-results').html(results_1);
+    $('.js-footer').html(attribution_1);
   }
 
 
@@ -117,8 +123,7 @@ function greenSmoothieApp() {
   function watchForSelection() {
     $("a").on( "click", function(event) {
         event.preventDefault();
-        console.log('recipe clicked');
-        const recipeId = $(this).children('p').attr('id');
+        const recipeId = $(this).find('h4').attr('id');
         getDataFromYummlyGetRecipeApi(recipeId, displayYummlyRecipe);
       });
   }
@@ -158,4 +163,4 @@ function greenSmoothieApp() {
 
 }
 
-greenSmoothieApp();
+thisApp();

@@ -1,3 +1,97 @@
-body {
-  padding-top: 50px;
+/*lime: #99ff66;*/
+/*yellow: #ccff33;*/
+/*green: #99cc66;*/
+/*#2E8B57*/
+
+header {
+	width: 100%;
+	background-color: #ccff33;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
+
+
+
+h1 {
+	font-family: 'Bangers', cursive;
+	font-size: 4.2em;
+	color: #32CD32;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+h2 {
+	color: #556B2F;
+}
+
+h2, h3, h4, h5, button {
+	font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+h2 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+form {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
+}
+
+h4 {
+	vertical-align: middle;
+}
+
+label, input, p {
+	font-family: 'Scope One', serif;
+}
+
+.box {
+  border: 1px solid #ccff33;
+  margin-bottom: 20px;
+  height: 295px;
+  background-color: #F5F5F5;
+}
+
+.image {
+  width: 100%;
+
+}
+
+.text {
+  padding-left: 20px;
+  padding-right: 20px;
+  
+
+}
+
+a {
+	color: #006400;
+}
+
+ /* unvisited link */
+a:link {
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus {
+	text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: #006400;
+    text-decoration: underline;
+} 
+

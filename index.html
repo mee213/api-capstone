@@ -2,29 +2,55 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Green Smoothie Gofer</title>
         <script
           src="https://code.jquery.com/jquery-3.2.1.min.js"
           integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
           crossorigin="anonymous"></script>
-        <link href="index.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bangers|Scope+One|Barlow+Semi+Condensed" rel="stylesheet"> 
+        <link href="float-grid.css" rel="stylesheet" />
+        <link href="index.css" rel="stylesheet" />
+
     </head>
     <body>
-      <main>
-        <h1>Green Smoothie Gofer</h1>
-        <h2>Find a green smoothie recipe with your favorite ingredient!</h2>
-          <form action="#" class="js-search-form">
-            <label for="search">What ingredient would you like to search for?</label>
-            <input type="text" class="js-query" id="search">
-            <button type="submit">Search</button>
-          </form>
+
+      <header role="banner">
+        <div class="row">
+          <div class="col-12">
+            <h1>Green Smoothie Gofer</h1>
+            <h2>Find a green smoothie recipe with your favorite ingredient!</h2>
+          </div>
+        </div>
+      </header>
+
+      <main role="main">
           
-          <h2>Results</h2>
-          <div class="js-results" aria-live="assertive" hidden>
+          <div class="row">
+            <div class="col-12">
+              <form action="#" class="js-search-form">
+                <label for="search">What ingredient would you like to search for?</label>
+                <input type="text" class="js-query" id="search">
+                <button type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="js-results row" aria-live="assertive" hidden>
             
           </div>
+
       </main>
+
+      <footer role="contentinfo" class="row js-footer">
+        <div class="col-12">
+          <p>
+            Recipe search powered by <a href="http://www.yummly.co/recipes"><img alt="Yummly" src="https://static.yummly.co/api-logo.png"></a>
+          </p>
+        </div>
+      </footer>
+
       <script src="index.js"></script>
     </body>
 </html>
