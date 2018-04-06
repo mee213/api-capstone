@@ -77,7 +77,7 @@ button {
 .box {
   border: 1px solid #ccff33;
   margin-bottom: 20px;
-  height: 295px;
+  min-height: 295px;
   background-color: #F5F5F5;
 }
 
