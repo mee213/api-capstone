@@ -3,6 +3,15 @@
 /*green: #99cc66;*/
 /*#2E8B57*/
 
+html {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+	position: relative;
+}
+
 header {
 	width: 100%;
 	background-color: #ccff33;
@@ -10,7 +19,10 @@ header {
 	padding-bottom: 20px;
 }
 
-
+main {
+	margin-bottom: 3rem;
+	padding-bottom: 30px;
+}
 
 h1 {
 	font-family: 'Bangers', cursive;
@@ -26,6 +38,15 @@ h2 {
 
 h2, h3, h4, h5, button {
 	font-family: 'Barlow Semi Condensed', sans-serif;
+	font-weight: normal;
+}
+
+
+
+h3 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 200%;
 }
 
 h2 {
@@ -46,6 +67,12 @@ h4 {
 label, input, p {
 	font-family: 'Scope One', serif;
 }
+
+button {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
 
 .box {
   border: 1px solid #ccff33;
@@ -85,13 +112,28 @@ a:hover {
     text-decoration: underline;
 }
 
+/* keyboard/tab-selected link */
 a:focus {
 	text-decoration: underline;
 }
 
 /* selected link */
 a:active {
-    color: #006400;
     text-decoration: underline;
 } 
+
+.js-footer {
+    position: absolute;
+    
+  	bottom: 0;
+  	
+  	padding-bottom: 1.5rem;
+   
+}
+
+.js-footer img {
+	position: relative;
+	top: 8px;
+	left: -4px;
+}
 

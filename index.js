@@ -66,7 +66,7 @@ function thisApp() {
     return `
       <div class="col-12">
         <button type="submit" class="js-back">Back to Search Results</button>
-        <h3>${recipe.attribution.html}</h3>
+        <h3><a href="${recipe.attribution.url}">${recipe.name}</a></h3>
         <img src="${recipe.images[0].hostedLargeUrl}"/>
         <h5>Servings: ${recipe.numberOfServings}</h5>
         ${ingredientListHTML}
@@ -111,7 +111,7 @@ function thisApp() {
 
   function populateResultsToDOM(attribution_1, results_1) {
     $('.js-results').html(results_1);
-    $('.js-footer').html(attribution_1);
+    
   }
 
 
