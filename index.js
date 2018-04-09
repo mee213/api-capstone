@@ -15,6 +15,7 @@ function thisApp() {
         '_app_id': 'fb07a227',
         'q': 'green+smoothie',
         'allowedIngredient[]': `${searchTerm}`,
+        'excludedIngredient[]': 'salad',
         'requirePictures': true,
         maxResult: 144
       },
