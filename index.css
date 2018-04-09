@@ -14,7 +14,7 @@ body {
 
 header {
 	width: 100%;
-	background-color: #ccff33;
+	background-color: #e9fcc7/*#edfbd2/*#f9fbd2/*#f9fae4/*#ccff33*/;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
@@ -27,13 +27,9 @@ main {
 h1 {
 	font-family: 'Bangers', cursive;
 	font-size: 4.2em;
-	color: #32CD32;
+	color: #229722/*#239623/*#32CD32*/;
 	margin-top: 10px;
 	margin-bottom: 10px;
-}
-
-h2 {
-	color: #556B2F;
 }
 
 h2, h3, h4, h5, button {
@@ -41,7 +37,11 @@ h2, h3, h4, h5, button {
 	font-weight: normal;
 }
 
-
+h2 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: #556B2F;
+}
 
 h3 {
 	margin-top: 20px;
@@ -49,19 +49,14 @@ h3 {
 	font-size: 200%;
 }
 
-h2 {
-	margin-top: 5px;
-	margin-bottom: 5px;
+h4 {
+	vertical-align: middle;
 }
 
 form {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	
-}
-
-h4 {
-	vertical-align: middle;
 }
 
 label, input, p {

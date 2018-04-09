@@ -66,8 +66,8 @@ function thisApp() {
     return `
       <div class="col-12">
         <button type="submit" class="js-back">Back to Search Results</button>
-        <h3><a href="${recipe.attribution.url}">${recipe.name}</a></h3>
-        <img src="${recipe.images[0].hostedLargeUrl}"/>
+        <h3 id="${recipe.name}""><a href="${recipe.attribution.url}">${recipe.name}</a></h3>
+        <img src="${recipe.images[0].hostedLargeUrl}" aria-label="${recipe.name}"/>
         <h5>Servings: ${recipe.numberOfServings}</h5>
         ${ingredientListHTML}
         <p>Source: <a href="${recipe.source.sourceRecipeUrl}" target="_blank">${recipe.source.sourceDisplayName}</a></p>
