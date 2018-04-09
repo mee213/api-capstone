@@ -4,7 +4,6 @@ function thisApp() {
   const YUMMLY_SEARCHRECIPES_URL = 'https://api.yummly.com/v1/api/recipes';
   const YUMMLY_GETRECIPE_BASE_URL = 'https://api.yummly.com/v1/api/recipe/';
   let results;
-  let attribution;
 
 
   function getDataFromYummlySearchRecipesApi(searchTerm, callback) {
@@ -14,7 +13,8 @@ function thisApp() {
       data: {
         '_app_key': '98d5f50b76c55e907326e264c73e2b06',
         '_app_id': 'fb07a227',
-        'q': `green smoothie ${searchTerm}`,
+        'q': 'green+smoothie',
+        'allowedIngredient[]': `${searchTerm}`,
         'requirePictures': true,
         maxResult: 144
       },
@@ -94,22 +94,20 @@ function thisApp() {
     if (data.totalMatchCount>0) { 
       
       results = data.matches.map((item, index) => renderSearchResult(item));
-      attribution = `<div class="col-12"><p>${data.attribution.html}</p></div>`;
       unhideResultsDiv();
-      populateResultsToDOM(attribution, results);
-      console.log(attribution);
+      populateResultsToDOM(results);
       watchForSelection();
 
     } else {
 
       unhideResultsDiv();
-      const errorMessage = "<p>There are no search results to display.</p>";
+      const errorMessage = "<div class='col-12'><p>There are no search results to display.</p></div>";
       $('.js-results').html(errorMessage);
     }
   }
 
 
-  function populateResultsToDOM(attribution_1, results_1) {
+  function populateResultsToDOM(results_1) {
     $('.js-results').html(results_1);
     
   }
@@ -135,7 +133,7 @@ function thisApp() {
     $('h3 a').attr('target','_blank');
     $('.js-back').click(event => {
       event.preventDefault();
-      populateResultsToDOM(attribution, results);
+      populateResultsToDOM(results);
       watchForSelection();
     })
   }

@@ -1,7 +1,3 @@
-/*lime: #99ff66;*/
-/*yellow: #ccff33;*/
-/*green: #99cc66;*/
-/*#2E8B57*/
 
 html {
 	height: 100%;
@@ -14,7 +10,7 @@ body {
 
 header {
 	width: 100%;
-	background-color: #e9fcc7/*#edfbd2/*#f9fbd2/*#f9fae4/*#ccff33*/;
+	background-color: #e9fcc7;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
@@ -27,7 +23,7 @@ main {
 h1 {
 	font-family: 'Bangers', cursive;
 	font-size: 4.2em;
-	color: #229722/*#239623/*#32CD32*/;
+	color: #229722;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
@@ -56,7 +52,6 @@ h4 {
 form {
 	margin-top: 20px;
 	margin-bottom: 20px;
-	
 }
 
 label, input, p {
@@ -68,24 +63,22 @@ button {
 	margin-bottom: 10px;
 }
 
-
 .box {
   border: 1px solid #ccff33;
   margin-bottom: 20px;
-  min-height: 295px;
+  min-height: 297px;
   background-color: #F5F5F5;
 }
 
 .image {
   width: 100%;
-
 }
 
 .text {
   padding-left: 20px;
   padding-right: 20px;
-  
-
+  overflow: hidden;
+  text-overflow:ellipsis;
 }
 
 a {
@@ -119,11 +112,8 @@ a:active {
 
 .js-footer {
     position: absolute;
-    
   	bottom: 0;
-  	
   	padding-bottom: 1.5rem;
-   
 }
 
 .js-footer img {
